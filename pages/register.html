@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <form action="register.php" method="POST">
+    <h1>Register</h1>
+
+    <input type="text" name="ref" placeholder="Referal Username"><br>
+    <input type="text" name="first_name" placeholder="Your First Name"><br>
+    <input type="text" name="last_name" placeholder="Your Last name"><br>
+    <input type="email" name="email" placeholder="Your email address"><br>
+    <input type="tel" name="phone" placeholder="Your phone number"><br>
+
+    <select name="gender">
+        <option value="">- Selecte Gender -</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <br>
+
+    <select name ="state_of_origin">
+        <option value="">- Select State of Origin -</option>
+        <option value="Abuja">Abuja</option>
+        <option value="Lagos">Lagos</option>
+        <option value="Benin">Benin</option>
+    </select>
+    <br>
+    <input type="text" name="contact" placeholder="Enter your contact details">
+
+    <br>
+    <h4>School Information</h4>
+    
+    <input type="text" name="school" placeholder="Enter your school name"><br>
+    <input type="text" name="department" placeholder="Enter your Department"><br>
+
+    <h4>Login Information</h4>
+
+    <input type="text" name="username" placeholder="Enter Username"><br>
+    <input type="password" name="password" placeholder="Enter your password"><br>
+    <input type="password" name="confirm_password" placeholder="Confirm password">
+  
+    <br>
+    <input type="submit" value="Create Account">
+</form>
+
+
+
+</body>
+</html>
