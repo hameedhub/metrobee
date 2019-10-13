@@ -1,14 +1,11 @@
 const staticCache = 'site-static';
+const pageCache = 'site-pages';
 const assets =[
     '/',
     '/index.html',
     '/js/app.js',
     '/js/jquery.js',
-    '/images/icon.png',
-    '/pages/login.html',
-    '/pages/register.html',
-    '/pages/dashboard.html',
-    '/pages/update.html'
+    '/images/icon.png'  
 ]
 self.addEventListener('install', event =>{
     //caching assets file
@@ -21,13 +18,25 @@ self.addEventListener('install', event =>{
 });
 
 self.addEventListener('activate', event =>{
-    console.log('activated');
+    event.waitUntil(
+        caches.keys().then(keys =>{
+            return Promise.all(keys
+                .filter(key => key !== staticCache)
+                .map(key => caches.delete(key))
+                )
+        })
+    )
 });
 
 self.addEventListener('fetch', event =>{
    event.respondWith(
     caches.match(event.request).then(res => {
-        return res || fetch(event.request);
+        return res || fetch(event.request).then(fetchRes =>{
+            return caches.open(pageCache).then(cache =>{
+                cache.put(event.request.url, fetchRes.clone());
+                return fetchRes;
+            })
+        });
     })
    );
 })
