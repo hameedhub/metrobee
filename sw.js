@@ -5,7 +5,8 @@ const assets =[
     '/index.html',
     '/js/app.js',
     '/js/jquery.js',
-    '/images/icon.png'  
+    '/images/icon.png',
+    '/error.html'
 ]
 self.addEventListener('install', event =>{
     //caching assets file
@@ -21,7 +22,7 @@ self.addEventListener('activate', event =>{
     event.waitUntil(
         caches.keys().then(keys =>{
             return Promise.all(keys
-                .filter(key => key !== staticCache)
+                .filter(key => key !== staticCache && key !== pageCache)
                 .map(key => caches.delete(key))
                 )
         })
@@ -37,6 +38,6 @@ self.addEventListener('fetch', event =>{
                 return fetchRes;
             })
         });
-    })
+    }).catch(()=> caches.match('/error.html'))
    );
 })
