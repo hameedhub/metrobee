@@ -9,7 +9,7 @@ if ($_POST) {
         DB::query('INSERT INTO `users`(`first_name`, `last_name`, `email`, `phone`, `gender`, `state_of_origin`, `contact`, `username`,`password`) 
         VALUES (:first_name,:last_name,:email,:phone,:gender,:state_of_origin, :contact,:username,:password)',
          array(':first_name'=>$_POST['first_name'], ':last_name'=>$_POST['last_name'], ':email'=>$_POST['email'], ':phone'=>$_POST['phone'], ':gender'=>$_POST['gender'],
-         ':state_of_origin'=>$_POST['state_of_origin'], ':contact'=>$_POST['contact'], ':username'=>$_POST['username'], ':password'=>$_POST['password']));
+         ':state_of_origin'=>$_POST['state_of_origin'], ':contact'=>$_POST['contact'], ':username'=>$_POST['username'], ':password'=> password_hash($_POST['password'], PASSWORD_DEFAULT)));
 
     }else{
         echo "Email address already exist";
